@@ -1,14 +1,21 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {fetchWeather} from "../api/asyncWeatherAction.ts";
-
+const initialState = {
+    country: '',
+    city: '',
+    temp: 0,
+    pressure: 0,
+    sunset: 0,
+    timestamp: 0
+};
 const weatherSlice = createSlice({
     name: 'weather',
-    initialState: {},
+    initialState,
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(fetchWeather.fulfilled, (_state, action) => action.payload)
-            .addCase(fetchWeather.rejected, () => ({}))
+            .addCase(fetchWeather.rejected, () => initialState)
     }
 })
 
